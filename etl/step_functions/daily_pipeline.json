@@ -1,0 +1,38 @@
+{
+  "Comment": "Daily Banking Data Lake Pipeline",
+  "StartAt": "RawToProcessed",
+  "States": {
+    "RawToProcessed": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "raw-to-processed-banking"
+      },
+      "Next": "CustomerInsights"
+    },
+    "CustomerInsights": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "processed-to-curated-banking"
+      },
+      "Next": "RiskAnalysis"
+    },
+    "RiskAnalysis": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "processed-to-risk-analysis-banking"
+      },
+      "Next": "MLFeatures"
+    },
+    "MLFeatures": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "processed-to-ml-features-banking"
+      },
+      "End": true
+    }
+  }
+}
