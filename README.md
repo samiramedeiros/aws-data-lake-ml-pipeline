@@ -83,7 +83,7 @@ Ela é composta apenas por **datasets analíticos e métricas**, como:
 
 Este projeto **não treina modelos de Machine Learning propositalmente**.
 
-### ✔️ Decisão arquitetural consciente
+### ✔️ Decisão arquitetural consciente 
 
 O papel da Engenharia de Dados neste contexto é:
 
